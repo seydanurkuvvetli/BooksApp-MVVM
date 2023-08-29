@@ -1,23 +1,16 @@
 package com.example.booksapp.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.booksapp.MainApplication
 import com.example.booksapp.R
 import com.example.booksapp.common.viewBinding
-import com.example.booksapp.common.visible
-import com.example.booksapp.data.model.GetBooksResponse
 import com.example.booksapp.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), BooksAdapter.BookListener {

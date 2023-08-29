@@ -13,13 +13,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class BooksRepository(private val bookService: BookService) {
-    val booksLiveData =MutableLiveData<List<Book>?>()
-    val errorMessageLiveData =MutableLiveData<String>()
-    val booksDetailLiveData =MutableLiveData<BookDetail?>()
-    val loadingLiveData=MutableLiveData<Boolean>()
-    fun getBooks(){
-        loadingLiveData.value=true
-       bookService.getProducts().enqueue(object : Callback<GetBooksResponse> {
+    val booksLiveData = MutableLiveData<List<Book>?>()
+    val errorMessageLiveData = MutableLiveData<String>()
+    val booksDetailLiveData = MutableLiveData<BookDetail?>()
+    val loadingLiveData = MutableLiveData<Boolean>()
+    fun getBooks() {
+        loadingLiveData.value = true
+        bookService.getProducts().enqueue(object : Callback<GetBooksResponse> {
             override fun onResponse(
                 call: Call<GetBooksResponse>,
                 response: Response<GetBooksResponse>
@@ -27,23 +27,24 @@ class BooksRepository(private val bookService: BookService) {
                 val result = response.body()?.books
 
                 if (result.isNullOrEmpty().not()) {
-                     booksLiveData.value=result
-                }else{
-                    booksLiveData.value=null
+                    booksLiveData.value = result
+                } else {
+                    booksLiveData.value = null
                 }
-                loadingLiveData.value=false
+                loadingLiveData.value = false
             }
 
             override fun onFailure(call: Call<GetBooksResponse>, t: Throwable) {
-                errorMessageLiveData.value=t.message.orEmpty()
+                errorMessageLiveData.value = t.message.orEmpty()
                 Log.e("GetBooks", t.message.orEmpty())
             }
 
         })
     }
-    fun getBooksDetail(id:Int){
-        loadingLiveData.value=true
-       bookService.getBookDetail(id).enqueue(object :
+
+    fun getBooksDetail(id: Int) {
+        loadingLiveData.value = true
+        bookService.getBookDetail(id).enqueue(object :
             Callback<GetBookDetailResponse> {
             override fun onResponse(
                 call: Call<GetBookDetailResponse>,
@@ -52,14 +53,14 @@ class BooksRepository(private val bookService: BookService) {
             ) {
 
 
-                    booksDetailLiveData.value=response.body()?.book
-                loadingLiveData.value=false
+                booksDetailLiveData.value = response.body()?.book
+                loadingLiveData.value = false
 
 
             }
 
             override fun onFailure(call: Call<GetBookDetailResponse>, t: Throwable) {
-                errorMessageLiveData.value=t.message.orEmpty()
+                errorMessageLiveData.value = t.message.orEmpty()
 
                 Log.e("GetBooks", t.message.orEmpty())
             }

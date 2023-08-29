@@ -5,8 +5,6 @@ import com.example.booksapp.common.Constans.Endpoint.GET_BOOKS_DETAİL
 import com.example.booksapp.data.model.GetBookDetailResponse
 import com.example.booksapp.data.model.GetBooksResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Query
 
